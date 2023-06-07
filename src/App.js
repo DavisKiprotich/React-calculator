@@ -1,37 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
-import Greet from './components/Greet';
-import Welcome from './components/Welcome'
-import Hello from './components/Hello';
-import Message from './components/Message';
-import Counter from './components/Counter';
-import FunctionClick from './components/FunctionClick';
-import ClassClick from './components/ClassClick';
-import EventBind from './components/EventBind';
-import ParentComponent from './components/ParentComponent';
-import UserGreeting from './components/UserGreeting';
-import NameList from './components/NameList';
+import { useState } from "react";
 
 function App() {
+  const [calc, setCalc] = useState('');
+  const [result, setResult] = useState('');
+
+  const ops = ['/', '*', '+', '-', '.'];
+
+  
+
+  const createValues = () => {
+    const digits =[];
+    for(let i = 1; i < 10; i++){
+      digits.push(
+        <button key={i}>{i}</button>
+      )
+    }
+    return digits;
+  }
+
   return (
     <div className="App">
-      <UserGreeting />
-      <NameList />
-      <ParentComponent />
-      <EventBind />
-      <ClassClick />
-      <FunctionClick />
-      <Message  />
-      <Counter />
-      <Greet name= "Miles" >
-        This is a child component
-      </Greet>
-      <Greet name= "Clark" />
-      <Greet name= "Bruce" />
-      <Welcome name="Bruce" heroName="Batman" />
-      <Welcome name="Clark" heroName="Superman" />
-      <Hello />
-    </div>
+      <div className="calculator">
+      
+          <div className='display'>
+            <span>(0)</span>0
+          </div>
+          
+          <div className='operators'>
+            <button>+</button>
+            <button>-</button>
+            <button>/</button>
+            <button>*</button>
+            <button>DEL</button>
+          </div>
+
+          <div className='digits'>
+            { createValues() }
+            <button>0</button>
+            <button>.</button>
+            <button>=</button>
+          </div>
+        </div>
+      </div>
   );
 }
 
